@@ -5,7 +5,7 @@
 
 * Абстрактный класс Forecast, объединяющий все виды предсказания (тут все smoothing)
 
-* ~~Simple average over time~~
+* ~~Simple moving average~~
 
 * Simple exponential smoothing
 
