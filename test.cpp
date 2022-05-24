@@ -13,7 +13,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    {
+    { /// Test simple exponential smoothing
     cerr << "-----01-----\n";
     Exp1Smooth test(0.5);
     test.add({1, 1});
@@ -25,7 +25,7 @@ int main() {
     }
     }
 
-    {
+    { /// Try to predict linear trends
     cerr << "-----02-----\n";
     Exp2Smooth test(0.5, 1.5);
     for (int i = 0; i < 10; ++i) {
@@ -39,7 +39,7 @@ int main() {
     }
     }
 
-    {
+    { /// Try to predict parabolic trends
     cerr << "-----03-----\n";
     Exp2Smooth test(0.5, 1.5);
     for (int i = 0; i < 10; ++i) {
@@ -53,7 +53,7 @@ int main() {
     }
     }
 
-    {
+    { /// Just test SMA with unequal number of points in window
     cerr << "-----04-----\n";
     SMA test(7.);
     for (int i = 0; i < 10; ++i) {
@@ -64,7 +64,7 @@ int main() {
     cerr << test.get(test.get_time() + 100) << '\n';
     }
 
-    {
+    { /// Find shocks, using different predictors. Here we have two blatant shocks: time 3 and 6
     cerr << "-----05-----\n";
     SMA sma(5.);
     vector<Data> points = {{1, 1}, {2, 2}, {3, 6}, {4, 6}, {5, 6}, {6, 1}, {7, 1}, {8, 0}, {9, 0}};
@@ -80,9 +80,9 @@ int main() {
     }
     }
 
-    {
+    { /// Testing predictions: we should see trend prediction (approximately 4, 5, 6, 9 on gaps)
     cerr << "-----06-----\n";
-    auto exp2 = Exp2Smooth(1., 2.);
+    auto exp2 = Exp2Smooth(2.5, 2.);
     vector<NullableData> points = {{1, 1}, {2, 2}, {3, 3}, {4, {}}, {5, {}}, {6, {}}, {7, 7}, {8, 8}, {9, {}}};
     fill_predict(points, &exp2);
     for (size_t i = 0; i < points.size(); ++i) {
