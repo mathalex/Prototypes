@@ -2,6 +2,7 @@
 
 #include "exp1_smooth.h"
 #include "exp2_smooth.h"
+#include "sma.h"
 
 using namespace std;
 
@@ -47,6 +48,17 @@ int main() {
         double t = test.get_time() + i;
         cerr << "Time: " << t << "; Value: " << test.get(t) << "; Absolute error: " << abs(test.get(t) - (t * t + 3 * t + 2)) << '\n';
     }
+    }
+
+    {
+    cerr << "-----04-----\n";
+    SMA test(7.);
+    for (int i = 0; i < 10; ++i) {
+        test.add({i * i - 3 * i + 3., i + 0.});
+        cerr << test.get(test.get_time() + (i % 7)) << '\n';
+    }
+    // far moment
+    cerr << test.get(test.get_time() + 100) << '\n';
     }
     return 0;
 }

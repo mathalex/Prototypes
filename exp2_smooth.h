@@ -22,7 +22,7 @@ public:
         cur_time = data.time;
     }
 
-    double get(double time = 0.) override {
+    double get(double time) override {
         return cur_data + (time - cur_time) * cur_trend;
     }
 
