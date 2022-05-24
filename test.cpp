@@ -90,10 +90,10 @@ int main() {
     }
     }
 
-    {
+    { /// Testing Holt Winters: we should see seasonal prediction (approximately 1, 2, 3 on the last three points)
     cerr << "-----07-----\n";
-    auto exp3 = Exp3Smooth(1., 2., 0.1, 3);
-    vector<NullableData> points = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}, {6, 6}, {7, {}}, {8, {}}, {9, {}}};
+    auto exp3 = Exp3Smooth(0.1, 0.2, 3., 3);
+    vector<NullableData> points = {{1, 1}, {2, 2}, {3, 3}, {4, 1}, {5, 2}, {6, 3}, {7, {}}, {8, {}}, {9, {}}};
     fill_predict(points, &exp3);
     for (size_t i = 0; i < points.size(); ++i) {
         cerr << "Time " << points[i].time << " Value " << *points[i].value << '\n';
