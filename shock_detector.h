@@ -40,7 +40,7 @@ private:
 
 using std::vector;
 
-/// return vector of same size as points with 'true' (1) representing shocks,
+/// return vector of same size as points with 'false' (0) representing shocks,
 /// st_tol is standard deviation tolerance (which deviation counts as possible for non-shock event)
 vector<bool> get_shocks(const vector<Data>& points, double frame, Forecast* forecast, double st_tol) {
     ShockDetector sd(frame, forecast);
