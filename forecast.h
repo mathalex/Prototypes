@@ -12,4 +12,12 @@ public:
 
     /// try to predict the value at particular time
     virtual double get(double time) = 0;
+
+    double get_time() {
+        return cur_time;
+    }
+
+protected:
+    // time of the last point
+    double cur_time = -1;
 };

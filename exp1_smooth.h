@@ -17,6 +17,7 @@ public:
         cur_time = data.time;
     }
 
+    /// cannot make any future estimations
     double get([[maybe_unused]] double time = 0.) override {
         return cur_value;
     }
@@ -24,8 +25,6 @@ public:
 private:
     // smoothing degree, positive
     double alpha;
-    // time of the last point
-    double cur_time = -1;
     // aggregated value over all points
     double cur_value;
 };
