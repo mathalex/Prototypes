@@ -14,6 +14,7 @@ Data make_normal(const NullableData& nd) {
     return {nd.time, *nd.value};
 }
 
+/// Fills with values where they are missing
 void fill_predict(vector<NullableData>& points, Forecast* forecast) {
     for (auto& pt : points) {
         if (pt.value) {
