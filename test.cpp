@@ -5,6 +5,7 @@
 #include "sma.h"
 #include "shock_detector.h"
 #include "predictor.h"
+#include "exp3_smooth.h"
 
 using namespace std;
 
@@ -84,6 +85,16 @@ int main() {
     auto exp2 = Exp2Smooth(1., 2.);
     vector<NullableData> points = {{1, 1}, {2, 2}, {3, 3}, {4, {}}, {5, {}}, {6, {}}, {7, 7}, {8, 8}, {9, {}}};
     fill_predict(points, &exp2);
+    for (size_t i = 0; i < points.size(); ++i) {
+        cerr << "Time " << points[i].time << " Value " << *points[i].value << '\n';
+    }
+    }
+
+    {
+    cerr << "-----07-----\n";
+    auto exp3 = Exp3Smooth(1., 2., 0.1, 3);
+    vector<NullableData> points = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}, {6, 6}, {7, {}}, {8, {}}, {9, {}}};
+    fill_predict(points, &exp3);
     for (size_t i = 0; i < points.size(); ++i) {
         cerr << "Time " << points[i].time << " Value " << *points[i].value << '\n';
     }
