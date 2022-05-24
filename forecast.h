@@ -1,12 +1,12 @@
 #pragma once
 
+struct Data {
+    double time;
+    double value;
+};
+
 class Forecast {
 public:
-    struct Data {
-        double time;
-        double value;
-    };
-
     /// add new point, time is ascending over additions
     virtual void add(const Data& data) = 0;
 

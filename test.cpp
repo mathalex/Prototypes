@@ -3,6 +3,7 @@
 #include "exp1_smooth.h"
 #include "exp2_smooth.h"
 #include "sma.h"
+#include "shock_detector.h"
 
 using namespace std;
 
@@ -59,6 +60,22 @@ int main() {
     }
     // far moment
     cerr << test.get(test.get_time() + 100) << '\n';
+    }
+
+    {
+    cerr << "-----05-----\n";
+    SMA sma(5.);
+    vector<Data> points = {{1, 1}, {2, 2}, {3, 6}, {4, 6}, {5, 6}, {6, 1}, {7, 1}, {8, 0}, {9, 0}};
+    auto cur = get_shocks(points, 5, &sma, 1);
+    for (size_t i = 0; i < points.size(); ++i) {
+        cerr << "Time " << points[i].time << " Value " << points[i].value << " is " << (cur[i] ? "OK" : "shock") << '\n';
+    }
+    cerr << '\n';
+    sma = SMA(5.);
+    cur = get_shocks(points, 5, &sma, 1.2);
+    for (size_t i = 0; i < points.size(); ++i) {
+        cerr << "Time " << points[i].time << " Value " << points[i].value << " is " << (cur[i] ? "OK" : "shock") << '\n';
+    }
     }
     return 0;
 }
