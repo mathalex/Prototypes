@@ -17,7 +17,7 @@ public:
         cur_time = data.time;
     }
 
-    double get() override {
+    double get([[maybe_unused]] double time = 0.) override {
         return cur_value;
     }
 
