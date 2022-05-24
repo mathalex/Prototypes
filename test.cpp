@@ -71,8 +71,8 @@ int main() {
         cerr << "Time " << points[i].time << " Value " << points[i].value << " is " << (cur[i] ? "OK" : "shock") << '\n';
     }
     cerr << '\n';
-    sma = SMA(5.);
-    cur = get_shocks(points, 5, &sma, 1.2);
+    auto exp2 = Exp2Smooth(1., 2.);
+    cur = get_shocks(points, 5, &exp2, 0.5);
     for (size_t i = 0; i < points.size(); ++i) {
         cerr << "Time " << points[i].time << " Value " << points[i].value << " is " << (cur[i] ? "OK" : "shock") << '\n';
     }
